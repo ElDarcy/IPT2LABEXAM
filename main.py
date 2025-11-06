@@ -1,3 +1,7 @@
+#BSIT-307
+#Bacarisas, Eljun S. - Final Lab Exam
+#Resume builder Lab Exam
+
 import mysql.connector
 
 db = mysql.connector.connect(
@@ -9,7 +13,7 @@ db = mysql.connector.connect(
 
 
 def add_resume():
-    print("\n=== ADD NEW RESUME ===")
+    print("\n--- ADD NEW RESUME ---")
 
     full_name = input("Full Name: ")
     age = input("Age: ")
@@ -18,6 +22,7 @@ def add_resume():
     email = input("Email: ")
     job_title = input("Job Title: ")
     summary = input("Professional Summary : ")
+    
     #experience
     experiences = []
     while True:
@@ -53,7 +58,7 @@ def add_resume():
     data_resume = (full_name, age, address, phone, email, job_title, summary)
     cursor.execute(sql_resume, data_resume)
     resume_id = cursor.lastrowid
-
+    
     for exp in experiences:
         sql_exp = "INSERT INTO experience (resume_id, job_title, company, years) VALUES (%s, %s, %s, %s)"
         data_exp = (resume_id, exp[0], exp[1], exp[2])
@@ -86,7 +91,7 @@ def view_resumes():
         return
 
     for r in resumes:
-        print("\n========================================")
+        print("\n------------------------------------------")
         print("Name:", r["full_name"])
         print("Age:", r["age"])
         print("Job Title:", r["job_title"])
@@ -120,13 +125,13 @@ def view_resumes():
         if skills:
             print("Skills:")
             print(" ", ", ".join(s["skill"] for s in skills))
-        print("========================================\n")
+        print("------------------------------------------\n")
 
 
 
 def main_menu():
     while True:
-        print("=== INTERACTIVE RESUME BUILDER ===")
+        print("=== Welcome to my Resume builder Lab Exam ===")
         print("1. Add New Resume")
         print("2. View All Resumes")
         print("3. Exit")
@@ -138,7 +143,7 @@ def main_menu():
         elif choice == "2":
             view_resumes()
         elif choice == "3":
-            print("Goodbye!")
+            print("Thank you, Goodbye!")
             break
         else:
             print("Invalid choice. Please try again.\n")
