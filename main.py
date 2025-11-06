@@ -71,7 +71,7 @@ def add_resume():
         cursor.execute(sql_skill, data_skill)
 
     db.commit()
-    print("\n✅ Resume saved successfully!\n")
+    print("\nResume saved successfully!\n")
 
 
 def view_resumes():
@@ -146,3 +146,4 @@ def main_menu():
 
 
 main_menu()
+
